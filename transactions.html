@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Транзакции</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body data-page="transactions">
+
+    <div class="page-content">
+
+        <h1 class="page-title">Транзакции</h1>
+
+        <!-- Фильтры -->
+        <section class="filters-block">
+            <div class="filters-title">Фильтры</div>
+
+            <div class="filters-row">
+                <select class="filter-select" id="filterCategory">
+                    <option value="all">Все категории</option>
+                    <option value="Продукты">Продукты</option>
+                    <option value="Транспорт">Транспорт</option>
+                    <option value="Развлечения">Развлечения</option>
+                    <option value="Жильё">Жильё</option>
+                    <option value="Рестораны">Рестораны</option>
+                </select>
+
+                <select class="filter-select" id="filterAccount">
+                    <option value="all">Все счета</option>
+                    <option value="Тинькофф">Тинькофф</option>
+                    <option value="Сбербанк">Сбербанк</option>
+                    <option value="Альфа">Альфа</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Сегодня -->
+        <div class="date-divider">Сегодня</div>
+
+        <section class="transactions-list">
+
+            <div class="transaction-card">
+                <div class="transaction-left">
+                    <div class="transaction-icon red"></div>
+                    <div class="transaction-info">
+                        <div class="transaction-title">Продукты</div>
+                        <div class="transaction-subtitle">Тинькофф</div>
+                    </div>
+                </div>
+                <div class="transaction-amount red">-1 460 ₽</div>
+            </div>
+
+            <div class="transaction-card">
+                <div class="transaction-left">
+                    <div class="transaction-icon green"></div>
+                    <div class="transaction-info">
+                        <div class="transaction-title">Зарплата</div>
+                        <div class="transaction-subtitle">Тинькофф</div>
+                    </div>
+                </div>
+                <div class="transaction-amount green">+70 000 ₽</div>
+            </div>
+
+        </section>
+
+        <!-- Вчера -->
+        <div class="date-divider">Вчера</div>
+
+        <section class="transactions-list">
+
+            <div class="transaction-card">
+                <div class="transaction-left">
+                    <div class="transaction-icon blue"></div>
+                    <div class="transaction-info">
+                        <div class="transaction-title">Транспорт</div>
+                        <div class="transaction-subtitle">Сбербанк</div>
+                    </div>
+                </div>
+                <div class="transaction-amount red">-320 ₽</div>
+            </div>
+
+            <div class="transaction-card">
+                <div class="transaction-left">
+                    <div class="transaction-icon yellow"></div>
+                    <div class="transaction-info">
+                        <div class="transaction-title">Развлечения</div>
+                        <div class="transaction-subtitle">Альфа</div>
+                    </div>
+                </div>
+                <div class="transaction-amount red">-1 200 ₽</div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- Новый navbar -->
+    <div id="navbar"></div>
+
+    <script src="script.js"></script>
+
+    <script>
+        fetch("components/navbar.html")
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById("navbar").innerHTML = html;
+            });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body data-page="home">
+
+    <div class="page-content">
+
+        <!-- Общий баланс -->
+        <section class="card section">
+            <div>
+                <h2>Общий баланс</h2>
+                <div class="balance-value" style="font-size:32px; font-weight:700;"></div>
+                <div class="balance-link" style="color:var(--blue); margin-top:6px;">Показать детали</div>
+            </div>
+        </section>
+
+        <!-- Доходы / Расходы -->
+        <section class="section">
+            <div class="card" style="flex-direction:column; align-items:flex-start;">
+                <h3>Доходы</h3>
+                <div class="value green" style="font-size:24px; font-weight:700;"></div>
+                <div class="percent up text-muted"></div>
+            </div>
+
+            <div class="card" style="flex-direction:column; align-items:flex-start; margin-top:14px;">
+                <h3>Расходы</h3>
+                <div class="value red" style="font-size:24px; font-weight:700;"></div>
+                <div class="percent down text-muted"></div>
+            </div>
+        </section>
+
+        <!-- План расходов -->
+        <section class="card section">
+            <h3>План расходов</h3>
+            <div class="plan-line" style="margin-top:10px;">
+                <div class="plan-fill"></div>
+            </div>
+            <div class="plan-text text-muted" style="margin-top:6px;"></div>
+        </section>
+
+        <!-- Мои счета -->
+        <section class="section">
+            <h3 style="margin-bottom:14px;">Мои счета</h3>
+            <div class="accounts-short"></div>
+        </section>
+
+        <!-- Категории -->
+        <section class="section">
+            <h3 style="margin-bottom:14px;">Расходы по категориям</h3>
+            <div class="categories-list"></div>
+        </section>
+
+        <!-- Цели -->
+        <section class="section">
+            <h3 style="margin-bottom:14px;">Мои цели</h3>
+            <div class="goals-list"></div>
+        </section>
+
+        <!-- Последние транзакции -->
+        <section class="section">
+            <h3 style="margin-bottom:14px;">Последние транзакции</h3>
+            <div class="transactions-list"></div>
+        </section>
+
+    </div>
+
+    <!-- Новый navbar -->
+    <div id="navbar"></div>
+
+    <script src="script.js"></script>
+    <script>
+        fetch("components/navbar.html")
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById("navbar").innerHTML = html;
+            });
+    </script>
+
+</body>
+</html>

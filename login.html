@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход / Регистрация</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="auth-page">
+
+    <div class="auth-container">
+
+        <!-- Левая часть (форма) -->
+        <div class="auth-left">
+
+            <div class="auth-title">Добро пожаловать</div>
+            <div class="auth-subtitle">Войдите в аккаунт или создайте новый</div>
+
+            <!-- Табы -->
+            <div class="auth-tabs">
+                <div class="auth-tab active" id="loginTab">Вход</div>
+                <div class="auth-tab" id="registerTab">Регистрация</div>
+            </div>
+
+            <!-- Форма входа -->
+            <form class="auth-form" id="loginForm">
+
+                <label>Email</label>
+                <input type="email" placeholder="Введите email">
+
+                <label>Пароль</label>
+                <input type="password" placeholder="Введите пароль">
+
+                <button type="button" class="auth-btn">Войти</button>
+            </form>
+
+            <!-- Форма регистрации -->
+            <form class="auth-form" id="registerForm" style="display: none;">
+
+                <label>Имя</label>
+                <input type="text" placeholder="Введите имя">
+
+                <label>Email</label>
+                <input type="email" placeholder="Введите email">
+
+                <label>Пароль</label>
+                <input type="password" placeholder="Введите пароль">
+
+                <button type="button" class="auth-btn">Создать аккаунт</button>
+            </form>
+
+        </div>
+
+        <!-- Правая часть (картинка / текст) -->
+        <div class="auth-right">
+            <h2>Управляй финансами легко</h2>
+            <p>Следи за доходами, расходами, целями и аналитикой в одном месте</p>
+        </div>
+
+    </div>
+
+    <script>
+        const loginTab = document.getElementById("loginTab");
+        const registerTab = document.getElementById("registerTab");
+
+        const loginForm = document.getElementById("loginForm");
+        const registerForm = document.getElementById("registerForm");
+
+        loginTab.onclick = () => {
+            loginTab.classList.add("active");
+            registerTab.classList.remove("active");
+
+            loginForm.style.display = "block";
+            registerForm.style.display = "none";
+        };
+
+        registerTab.onclick = () => {
+            registerTab.classList.add("active");
+            loginTab.classList.remove("active");
+
+            loginForm.style.display = "none";
+            registerForm.style.display = "block";
+        };
+    </script>
+
+</body>
+</html>

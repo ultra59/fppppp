@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Категории и цели</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body data-page="categories">
+
+    <div class="page-content">
+
+        <h1 class="page-title">Категории и цели</h1>
+
+        <!-- КАТЕГОРИИ -->
+        <section class="section">
+            <h3 style="margin-bottom:14px;">Расходы по категориям</h3>
+
+            <div class="categories-list">
+
+                <div class="category-card">
+                    <div class="category-left">
+                        <div class="category-icon green"></div>
+                        <div class="category-info">
+                            <div class="category-title">Продукты</div>
+                            <div class="category-percent">12 000 ₽ (12%)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-left">
+                        <div class="category-icon blue"></div>
+                        <div class="category-info">
+                            <div class="category-title">Транспорт</div>
+                            <div class="category-percent">8 640 ₽ (9%)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-left">
+                        <div class="category-icon yellow"></div>
+                        <div class="category-info">
+                            <div class="category-title">Развлечения</div>
+                            <div class="category-percent">2 000 ₽ (2%)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-left">
+                        <div class="category-icon purple"></div>
+                        <div class="category-info">
+                            <div class="category-title">Жильё</div>
+                            <div class="category-percent">32 000 ₽ (37%)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-left">
+                        <div class="category-icon red"></div>
+                        <div class="category-info">
+                            <div class="category-title">Рестораны</div>
+                            <div class="category-percent">34 000 ₽ (40%)</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ЦЕЛИ -->
+        <section class="section">
+            <h3 style="margin-bottom:14px;">Мои цели</h3>
+
+            <div class="goals-list">
+
+                <div class="goal-card">
+                    <div class="goal-title">Отпуск</div>
+                    <div class="goal-progress">
+                        <div class="goal-fill" style="width: 75%;"></div>
+                    </div>
+                    <div class="goal-text">75 000 / 100 000 ₽ — 75%</div>
+                </div>
+
+                <div class="goal-card">
+                    <div class="goal-title">Новый телефон</div>
+                    <div class="goal-progress">
+                        <div class="goal-fill" style="width: 40%;"></div>
+                    </div>
+                    <div class="goal-text">20 000 / 50 000 ₽ — 40%</div>
+                </div>
+
+                <div class="goal-card">
+                    <div class="goal-title">Подушка безопасности</div>
+                    <div class="goal-progress">
+                        <div class="goal-fill" style="width: 10%;"></div>
+                    </div>
+                    <div class="goal-text">10 000 / 100 000 ₽ — 10%</div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Новый navbar -->
+    <div id="navbar"></div>
+
+    <script src="script.js"></script>
+    <script>
+        fetch("components/navbar.html")
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById("navbar").innerHTML = html;
+            });
+    </script>
+
+</body>
+</html>

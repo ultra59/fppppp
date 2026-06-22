@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Аналитика</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body data-page="analytics">
+
+    <div class="page-content">
+
+        <h1 class="page-title">Аналитика</h1>
+
+        <div class="analytics-block">
+
+            <!-- Доходы vs Расходы -->
+            <section class="analytics-card">
+                <h3>Доходы vs Расходы</h3>
+                <canvas id="incomeExpenseChart"></canvas>
+
+                <div class="chart-legend">
+                    <div class="legend-item">
+                        <div class="legend-color legend-green"></div> Доходы
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color legend-red"></div> Расходы
+                    </div>
+                </div>
+            </section>
+
+            <!-- Расходы по категориям -->
+            <section class="analytics-card">
+                <h3>Расходы по категориям</h3>
+                <canvas id="categoriesChart"></canvas>
+
+                <table class="analytics-table">
+                    <tr>
+                        <th>Категория</th>
+                        <th>Сумма</th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Продукты
+                            <div class="cat-progress">
+                                <div class="cat-fill green" style="width: 12%;"></div>
+                            </div>
+                        </td>
+                        <td>12 000 ₽</td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Транспорт
+                            <div class="cat-progress">
+                                <div class="cat-fill blue" style="width: 9%;"></div>
+                            </div>
+                        </td>
+                        <td>8 640 ₽</td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Развлечения
+                            <div class="cat-progress">
+                                <div class="cat-fill yellow" style="width: 2%;"></div>
+                            </div>
+                        </td>
+                        <td>2 000 ₽</td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Жильё
+                            <div class="cat-progress">
+                                <div class="cat-fill purple" style="width: 37%;"></div>
+                            </div>
+                        </td>
+                        <td>32 000 ₽</td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Рестораны
+                            <div class="cat-progress">
+                                <div class="cat-fill red" style="width: 40%;"></div>
+                            </div>
+                        </td>
+                        <td>34 000 ₽</td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- Статистика -->
+            <section class="analytics-card">
+                <h3>Статистика</h3>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-title">Всего доходов</div>
+                        <div class="stat-value">145 000 ₽</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-title">Всего расходов</div>
+                        <div class="stat-value">87 000 ₽</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-title">Средний расход</div>
+                        <div class="stat-value">2 900 ₽</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-title">Средний доход</div>
+                        <div class="stat-value">4 800 ₽</div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+    <!-- Новый navbar -->
+    <div id="navbar"></div>
+
+    <script src="script.js"></script>
+
+    <script>
+        fetch("components/navbar.html")
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById("navbar").innerHTML = html;
+            });
+
+        // График доходов/расходов
+        new Chart(document.getElementById("incomeExpenseChart"), {
+            type: "bar",
+            data: {
+                labels: ["Янв", "Фев", "Мар", "Апр", "Май", "Июн"],
+                datasets: [
+                    {
+                        label: "Доходы",
+                        data: [120000, 130000, 140000, 150000, 145000, 160000],
+                        backgroundColor: "#2ECC71"
+                    },
+                    {
+                        label: "Расходы",
+                        data: [80000, 82000, 90000, 95000, 87000, 91000],
+                        backgroundColor: "#E74C3C"
+                    }
+                ]
+            }
+        });
+
+        // График категорий
+        new Chart(document.getElementById("categoriesChart"), {
+            type: "doughnut",
+            data: {
+                labels: ["Продукты", "Транспорт", "Развлечения", "Жильё", "Рестораны"],
+                datasets: [{
+                    data: [12000, 8640, 2000, 32000, 34000],
+                    backgroundColor: ["#2ECC71", "#4A8BFF", "#F1C40F", "#9B59B6", "#E74C3C"]
+                }]
+            }
+        });
+    </script>
+
+</body>
+</html>

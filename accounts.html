@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Мои счета</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body data-page="accounts">
+
+    <div class="page-content">
+
+        <h1 class="page-title">Мои счета</h1>
+
+        <section class="accounts-list">
+
+            <!-- Счета будут подставляться динамически через JS -->
+            <!-- Пример статичных карточек (можно удалить, если JS сам рендерит) -->
+
+            <div class="account-card">
+                <div class="acc-icon blue"></div>
+                <div class="account-info">
+                    <div class="acc-title">Текущий зарплатный счёт</div>
+                    <div class="acc-bank">Банк 1</div>
+                </div>
+                <div class="acc-value">1 000 000 ₽</div>
+            </div>
+
+            <div class="account-card">
+                <div class="acc-icon green"></div>
+                <div class="account-info">
+                    <div class="acc-title">Накопительный счёт</div>
+                    <div class="acc-bank">Банк 2</div>
+                </div>
+                <div class="acc-value">350 000 ₽</div>
+            </div>
+
+            <div class="account-card">
+                <div class="acc-icon yellow"></div>
+                <div class="account-info">
+                    <div class="acc-title">Карта для покупок</div>
+                    <div class="acc-bank">Банк 3</div>
+                </div>
+                <div class="acc-value">42 000 ₽</div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- Новый navbar -->
+    <div id="navbar"></div>
+
+    <script src="script.js"></script>
+    <script>
+        fetch("components/navbar.html")
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById("navbar").innerHTML = html;
+            });
+    </script>
+
+</body>
+</html>
