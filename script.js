@@ -215,28 +215,36 @@ function renderHome() {
 
 //Страница счёта
 function renderAccounts() {
-    if (document.body.dataset.page !== "accounts") return;
-
     const db = getData();
     const container = document.querySelector(".accounts-list");
-    if (!container) return;
+    container.innerHTML = "";
 
-   container.innerHTML += `
-    <div class="account-card" data-id="${acc.id}">
-        <div class="acc-icon ${acc.color}"></div>
-        <div class="account-info">
-            <div class="acc-title">${acc.name}</div>
-            <div class="acc-bank">${acc.bank}</div>
-        </div>
-        <div class="acc-value">${acc.balance.toLocaleString()} ₽</div>
+    db.accounts.forEach(acc => {
+        const card = document.createElement("div");
+        card.className = "account-card";
 
-        <div class="acc-actions">
-            <button class="edit-account" data-id="${acc.id}">✏️</button>
-            <button class="delete-account" data-id="${acc.id}">🗑️</button>
-        </div>
-    </div>
-`;
+        card.innerHTML = `
+            <div class="acc-icon ${acc.color}"></div>
+
+            <div class="account-info">
+                <div class="acc-title">${acc.name}</div>
+                <div class="acc-bank">${acc.bank}</div>
+            </div>
+
+            <div class="acc-value">${acc.balance} ₽</div>
+
+            <div class="acc-actions">
+                <button class="edit-account" data-id="${acc.id}">✏️</button>
+                <button class="delete-account" data-id="${acc.id}">🗑️</button>
+            </div>
+        `;
+
+        container.appendChild(card);
+    });
+
+    attachAccountEvents();
 }
+
 
 let editingAccountId = null;
 
@@ -319,6 +327,97 @@ document.getElementById("saveAccountBtn").onclick = () => {
     renderAccounts();
 };
 
+function attachAccountEvents() {
+    document.querySelectorAll(".edit-account").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const id = Number(btn.dataset.id);
+            openEditAccountModal(id);
+        });
+    });
+
+    document.querySelectorAll(".delete-account").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const id = Number(btn.dataset.id);
+            deleteAccount(id);
+        });
+    });
+}
+
+function openEditAccountModal(id) {
+    const db = getData();
+    const acc = db.accounts.find(a => a.id === id);
+
+    editingAccountId = id;
+
+    document.getElementById("accountName").value = acc.name;
+    document.getElementById("accountBank").value = acc.bank;
+    document.getElementById("accountColor").value = acc.color;
+
+    document.getElementById("modalTitle").textContent = "Редактировать счёт";
+    document.getElementById("accountModal").style.display = "block";
+}
+
+function deleteAccount(id) {
+    const db = getData();
+
+    console.log("Удаление счёта с id =", id);
+    console.log("Текущее состояние db:", db);
+
+    const accountId = Number(id);
+
+    const transactions = Array.isArray(db.transactions) ? db.transactions : [];
+
+    const hasTransactions = transactions.some(t => Number(t.accountId) === accountId);
+
+    if (hasTransactions) {
+        alert("Нельзя удалить счёт, к которому привязаны транзакции.");
+        return;
+    }
+
+    const before = db.accounts.length;
+    db.accounts = db.accounts.filter(a => Number(a.id) !== accountId);
+    const after = db.accounts.length;
+
+    console.log(`Было счетов: ${before}, стало: ${after}`);
+
+    localStorage.setItem("financeData", JSON.stringify(db));
+    renderAccounts();
+}
+
+
+document.getElementById("saveAccountBtn").onclick = () => {
+    const db = getData();
+
+    const name = document.getElementById("accountName").value.trim();
+    const bank = document.getElementById("accountBank").value.trim();
+    const color = document.getElementById("accountColor").value;
+
+    if (!name || !bank) {
+        alert("Заполните все поля");
+        return;
+    }
+
+    if (editingAccountId) {
+        const acc = db.accounts.find(a => a.id === editingAccountId);
+        acc.name = name;
+        acc.bank = bank;
+        acc.color = color;
+    } else {
+        db.accounts.push({
+            id: Date.now(),
+            name,
+            bank,
+            color,
+            balance: 0
+        });
+    }
+
+    localStorage.setItem("financeData", JSON.stringify(db));
+    document.getElementById("accountModal").style.display = "none";
+
+    editingAccountId = null;
+    renderAccounts();
+};
 
 
 //Страница категории

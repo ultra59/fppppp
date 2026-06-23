@@ -1038,3 +1038,18 @@ p, span, div {
 #cancelAccountBtn:hover {
     background: #ccc;
 }
+
+
+.acc-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.edit-account,
+.delete-account {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 4px;
+}
