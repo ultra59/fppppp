@@ -1,4 +1,4 @@
-// ================== АКТИВНЫЙ ПУНКТ НАВБАРА ==================
+// Активный пункт навбара
 document.addEventListener("DOMContentLoaded", () => {
     const current = document.body.dataset.page;
     const items = document.querySelectorAll(".nav-item");
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderTransactions();
 });
 
-// ================== ДАННЫЕ (localStorage, но статично) ==================
+// Данные (localStorage, статичные) (как будет время реализовать динамические по возмонжонсти)
 if (!localStorage.getItem("financeData")) {
     const data = {
         accounts: [
@@ -56,7 +56,7 @@ function getData() {
     return JSON.parse(localStorage.getItem("financeData"));
 }
 
-// ================== НАСТРОЙКИ CHART.JS (ТОЛЬКО НА АНАЛИТИКЕ) ==================
+//Настройки CHART.JS (чисто аналитика)
 let chartColors = null;
 
 if (typeof Chart !== "undefined") {
@@ -84,7 +84,7 @@ if (typeof Chart !== "undefined") {
     };
 }
 
-// ================== ГЛАВНАЯ СТРАНИЦА ==================
+// Главная
 function renderHome() {
     if (document.body.dataset.page !== "home") return;
 
@@ -213,7 +213,7 @@ function renderHome() {
     }
 }
 
-// ================== СТРАНИЦА СЧЕТА ==================
+//Страница счёта
 function renderAccounts() {
     if (document.body.dataset.page !== "accounts") return;
 
@@ -236,7 +236,7 @@ function renderAccounts() {
     });
 }
 
-// ================== СТРАНИЦА КАТЕГОРИИ ==================
+//Страница категории
 function renderCategories() {
     if (document.body.dataset.page !== "categories") return;
 
@@ -262,7 +262,7 @@ function renderCategories() {
     });
 }
 
-// ================== СТРАНИЦА ЦЕЛИ (та же страница categories) ==================
+//Страница цели (categories)
 function renderGoals() {
     if (document.body.dataset.page !== "categories") return;
 
@@ -287,7 +287,7 @@ function renderGoals() {
     });
 }
 
-// ================== СТРАНИЦА АНАЛИТИКА ==================
+// Страница аналитики
 function renderAnalytics() {
     if (document.body.dataset.page !== "analytics") return;
 
@@ -352,12 +352,9 @@ function renderAnalytics() {
             </div>
         `;
     }
-
-    // Графики по месяцам (вариант A уже реализован в analytics.html)
-    // Здесь ничего не трогаем, чтобы не дублировать.
 }
 
-// ================== СТРАНИЦА ТРАНЗАКЦИИ ==================
+//Страница транзакций
 function renderTransactions() {
     if (document.body.dataset.page !== "transactions") return;
 
