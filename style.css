@@ -401,11 +401,14 @@ body {
 .account-card {
     display: flex;
     align-items: center;
-    background: #f7f9ff;
+    gap: 15px;
     padding: 15px;
     border-radius: 12px;
+    background: #fff;
     margin-bottom: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
+
 
 .acc-icon {
     width: 40px;
@@ -907,4 +910,131 @@ p, span, div {
 /* Жирный текст */
 .text-bold {
     font-weight: 600;
+}
+
+
+/* Кнопка "Добавить счёт" */
+.btn-add-account {
+    background: var(--blue);
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: 0.2s;
+}
+
+.btn-add-account:hover {
+    background: #0056d6;
+}
+
+/* Кнопки действий в карточке */
+.acc-actions {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.acc-actions button {
+    background: #f2f2f2;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.acc-actions button:hover {
+    background: #e0e0e0;
+}
+
+.acc-actions .delete-account:hover {
+    background: #ffdddd;
+}
+
+.acc-actions .edit-account:hover {
+    background: #ddeaff;
+}
+
+/* Модальное окно */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.45);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+/* Контент модального окна */
+.modal-content {
+    background: #fff;
+    padding: 25px;
+    border-radius: 14px;
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    animation: modalShow 0.25s ease;
+}
+
+@keyframes modalShow {
+    from { transform: translateY(-20px); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+}
+
+.modal-content h2 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* Поля формы */
+.modal-content input,
+.modal-content select {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+/* Кнопки в модальном окне */
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.modal-actions button {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+#saveAccountBtn {
+    background: var(--green);
+    color: #fff;
+}
+
+#saveAccountBtn:hover {
+    background: #0f9f4f;
+}
+
+#cancelAccountBtn {
+    background: #ddd;
+}
+
+#cancelAccountBtn:hover {
+    background: #ccc;
 }

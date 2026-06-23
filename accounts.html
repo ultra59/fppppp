@@ -13,6 +13,8 @@
 
         <h1 class="page-title">Мои счета</h1>
 
+        <button class="btn-add-account" id="addAccountBtn">Добавить счёт</button>
+
         <section class="accounts-list">
 
             <!-- Счета будут подставляться динамически через JS -->
@@ -49,10 +51,35 @@
 
     </div>
 
-    <!-- Новый navbar -->
     <div id="navbar"></div>
 
-    <script src="script.js"></script>
+    <div class="modal" id="accountModal">
+    <div class="modal-content">
+        <h2 id="modalTitle">Новый счёт</h2>
+
+        <label>Название счёта</label>
+        <input type="text" id="accountName">
+
+        <label>Банк</label>
+        <input type="text" id="accountBank">
+
+        <label>Цвет</label>
+        <select id="accountColor">
+            <option value="blue">Синий</option>
+            <option value="green">Зелёный</option>
+            <option value="yellow">Жёлтый</option>
+            <option value="red">Красный</option>
+            <option value="purple">Фиолетовый</option>
+        </select>
+
+        <div class="modal-actions">
+            <button id="saveAccountBtn">Сохранить</button>
+            <button id="cancelAccountBtn">Отмена</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
     <script>
         fetch("components/navbar.html")
             .then(res => res.text())

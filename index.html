@@ -73,24 +73,14 @@
     <!-- Новый navbar -->
     <div id="navbar"></div>
 
-<script src="script.js"></script>
-<script>
-fetch("components/navbar.html")
-    .then(res => res.text())
-    .then(html => {
-        document.getElementById("navbar").innerHTML = html;
-
-        const currentPage = document.body.dataset.page;
-        const buttons = document.querySelectorAll(".navbar button");
-
-        buttons.forEach(btn => {
-            if (btn.dataset.page === currentPage) {
-                btn.classList.add("active");
-            }
-        });
-    });
-</script>
-
+    <script src="script.js"></script>
+    <script>
+        fetch("components/navbar.html")
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById("navbar").innerHTML = html;
+            });
+    </script>
 
 </body>
 </html>
